@@ -1,68 +1,101 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import "tailwindcss";
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@theme {
+  --color-primary-50: #eef2ff;
+  --color-primary-100: #e0e7ff;
+  --color-primary-500: #6366f1;
+  --color-primary-600: #4f46e5;
+  --color-primary-700: #4338ca;
+  --font-family-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased font-sans;
   }
-  a:hover {
-    color: #747bff;
+}
+
+@layer utilities {
+  .shadow-subtle {
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   }
-  button {
-    background-color: #f9f9f9;
+  
+  .shadow-soft {
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
   }
+
+  .shadow-float {
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+  }
+}
+
+/* Ant Design Overrides for a Premium Scale Feel */
+.ant-btn-primary {
+  @apply bg-indigo-600 hover:!bg-indigo-500 shadow-sm border-0;
+}
+
+.ant-card {
+  @apply !rounded-2xl !border-slate-200/60 !shadow-subtle;
+}
+
+.ant-card-head {
+  @apply !border-b-slate-100 !min-h-[56px];
+}
+
+.ant-card-head-title {
+  @apply !text-slate-800 !font-semibold;
+}
+
+.ant-table-wrapper .ant-table-container {
+  @apply !rounded-xl !border !border-slate-200/60;
+}
+
+.ant-table-thead > tr > th {
+  @apply !bg-slate-50 !text-slate-500 !font-medium !text-xs !uppercase !tracking-wider !border-b-slate-200 !py-4;
+}
+
+.ant-table-tbody > tr > td {
+  @apply !py-4 !text-slate-700;
+}
+
+.ant-table-row:hover > td {
+  @apply !bg-slate-50/50;
+}
+
+.ant-tag {
+  @apply !border-0 !px-2.5 !py-0.5 !rounded-full !font-medium;
+}
+
+.ant-tabs-nav::before {
+  @apply !border-slate-200;
+}
+
+.ant-tabs-tab {
+  @apply !px-0 !pb-4 !mr-8 !text-slate-500 !text-sm !font-medium hover:!text-slate-900 transition-colors;
+}
+
+.ant-tabs-tab-active .ant-tabs-tab-btn {
+  @apply !text-indigo-600 !font-semibold;
+}
+
+.ant-tabs-ink-bar {
+  @apply !bg-indigo-600 !h-[3px] !rounded-t-full;
+}
+
+.ant-input, .ant-picker, .ant-select-selector {
+  @apply !rounded-lg !border-slate-200 hover:!border-indigo-400 focus:!border-indigo-500 !shadow-sm !py-2;
+}
+
+/* Custom Scrollbar for a polished feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 rounded-full hover:bg-slate-300 transition-colors;
 }
